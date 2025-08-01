@@ -1,1 +1,24 @@
-<p>direccionad-form works!</p>
+
+  <div class="form-general">
+    <h2>Agregar Dirección Adicional</h2>
+    <form>
+      <div>
+        <label>Provincia:</label>
+        <input v-model="provincia" required />
+      </div>
+      <div>
+        <label>Ciudad:</label>
+        <input v-model="ciudad" required />
+      </div>
+      <div>
+        <label>Dirección:</label>
+        <input v-model="direccion" required />
+      </div>
+      <div class="botones">
+        <button type="submit">Guardar nueva dirección</button>
+        <button type="button">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+

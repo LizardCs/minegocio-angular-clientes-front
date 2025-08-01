@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-direccionad-form',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './direccionad-form.html',
   styleUrl: './direccionad-form.scss'
 })

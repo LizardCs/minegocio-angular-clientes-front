@@ -1,1 +1,28 @@
-<p>cliente-list works!</p>
+
+  <div class="lista-general">
+    <h2>Clientes Registrados</h2>
+
+    <div class="buscador">
+      <input v-model="filtro" type="text" placeholder="Buscar por cédula o nombre" />
+      <button >Buscar</button>
+      <button>Limpiar</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>N</th>
+          <th>Tipo</th>
+          <th>ID o RUC</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Celular</th>
+          <th>Ciudad</th>
+          <th>Dirección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+

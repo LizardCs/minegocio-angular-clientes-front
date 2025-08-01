@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-list',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './cliente-list.html',
   styleUrl: './cliente-list.scss'
 })
