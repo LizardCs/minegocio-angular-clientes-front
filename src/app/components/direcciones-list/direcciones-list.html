@@ -1,15 +1,22 @@
-  <div>
-    <h2>Direcciones adicionales:</h2>
-    <div class="lista-general">
-      <table>
-        <thead>
-          <tr>
-            <th>Provincia</th>
-            <th>Ciudad</th>
-            <th>Dirección</th>
-          </tr>
-        </thead>
-      </table>
-    </div>
-  </div>
+<div *ngIf="cliente()">
+  <h2>Direcciones adicionales de: {{ cliente()?.names }}</h2>
 
+  <div class="lista-general">
+    <table>
+      <thead>
+        <tr>
+          <th>Provincia</th>
+          <th>Ciudad</th>
+          <th>Dirección</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let direccion of direcciones()">
+          <td>{{ direccion.provincia }}</td>
+          <td>{{ direccion.ciudad }}</td>
+          <td>{{ direccion.direccion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

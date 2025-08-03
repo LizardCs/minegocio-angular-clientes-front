@@ -1,11 +1,20 @@
+<div class="lista-general">
+  <h2>Clientes Registrados</h2>
 
-  <div class="lista-general">
-    <h2>Clientes Registrados</h2>
+  <button *ngIf="!mostrarFormularioCliente()" (click)="nuevoCliente()">Agregar nuevo cliente</button>
 
+  <!-- Mostrar formulario cuando activo -->
+  <app-cliente-form 
+    *ngIf="mostrarFormularioCliente()" 
+    (cancelar)="cancelarFormulario()" 
+    (guardado)="cancelarFormulario()">
+  </app-cliente-form>
+
+  <div>
     <div class="buscador">
-      <input v-model="filtro" type="text" placeholder="Buscar por cédula o nombre" />
-      <button >Buscar</button>
-      <button>Limpiar</button>
+      <input [(ngModel)]="filtro" type="text" placeholder="Buscar por cédula o nombre" />
+      <button class="" (click)="buscar()">Buscar</button>
+      <button (click)="limpiar()">Limpiar</button>
     </div>
 
     <table>
@@ -22,7 +31,23 @@
           <th>Acciones</th>
         </tr>
       </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ cliente.identificationType }}</td>
+          <td>{{ cliente.identificationNumber }}</td>
+          <td>{{ cliente.names }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.cellphone }}</td>
+          <td>{{ cliente.mainCity }}</td>
+          <td>{{ cliente.mainAddress }}</td>
+          <td>
+            <button (click)="editarCliente(cliente)">Editar</button>
+            <button (click)="eliminarCliente(cliente.id)">Eliminar</button>
+            <button (click)="verDireccionesAdicionales(cliente)">DIR ADICIONALES</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
-
-
+</div>

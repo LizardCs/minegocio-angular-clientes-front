@@ -1,24 +1,24 @@
-
+<div *ngIf="cliente()">
   <div class="form-general">
-    <h2>Agregar Dirección Adicional</h2>
-    <form>
+    <h2>Agregar Dirección Adicional para: {{ cliente()?.names }}</h2>
+    <form (ngSubmit)="guardar()">
       <div>
         <label>Provincia:</label>
-        <input v-model="provincia" required />
+        <input [(ngModel)]="provincia" name="provincia" required />
       </div>
       <div>
         <label>Ciudad:</label>
-        <input v-model="ciudad" required />
+        <input [(ngModel)]="ciudad" name="ciudad" required />
       </div>
       <div>
         <label>Dirección:</label>
-        <input v-model="direccion" required />
+        <input [(ngModel)]="direccion" name="direccion" required />
       </div>
       <div class="botones">
-        <button type="submit">Guardar nueva dirección</button>
-        <button type="button">Cancelar</button>
+        <button type="submit">Guardar dirección</button>
+        <button type="button" (click)="resetear()">Limpiar</button>
+        <button type="button" (click)="cancelardirad()">Cancelar</button>
       </div>
     </form>
   </div>
-
-
+</div>
