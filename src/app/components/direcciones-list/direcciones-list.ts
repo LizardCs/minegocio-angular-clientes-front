@@ -2,11 +2,12 @@ import { Component, effect, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { clienteParaDirecciones } from '../../shared/cliente-compartido';
 import { Direccion, Direccionservice } from '../../services/direccionservice';
+import { PRIMENG_IMPORTS } from '../../primeng.imports';
 
 @Component({
   selector: 'app-direcciones-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ...PRIMENG_IMPORTS],
   templateUrl: './direcciones-list.html',
   styleUrl: './direcciones-list.scss'
 })

@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Direccionservice, DireccionCrearDTO } from '../../services/direccionservice';
 import { clienteParaDirecciones } from '../../shared/cliente-compartido';
+import { PRIMENG_IMPORTS } from '../../primeng.imports';
 
 @Component({
   selector: 'app-direccionad-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ...PRIMENG_IMPORTS],
   templateUrl: './direccionad-form.html',
   styleUrl: './direccionad-form.scss'
 })

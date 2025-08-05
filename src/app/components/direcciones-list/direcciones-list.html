@@ -2,21 +2,31 @@
   <h2>Direcciones adicionales de: {{ cliente()?.names }}</h2>
 
   <div class="lista-general">
-    <table>
-      <thead>
+    <p-table [value]="direcciones()" showGridlines [tableStyle]="{ 'min-width': '40rem' }" [paginator]="true" [rows]="5"
+      [rowsPerPageOptions]="[5, 10, 20]" [responsiveLayout]="'scroll'">
+
+      <ng-template pTemplate="header">
         <tr>
           <th>Provincia</th>
           <th>Ciudad</th>
           <th>Dirección</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let direccion of direcciones()">
-          <td>{{ direccion.provincia }}</td>
-          <td>{{ direccion.ciudad }}</td>
-          <td>{{ direccion.direccion }}</td>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-dir>
+        <tr>
+          <td>{{ dir.provincia }}</td>
+          <td>{{ dir.ciudad }}</td>
+          <td>{{ dir.direccion }}</td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="3" class="text-center">No hay direcciones adicionales registradas.</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
   </div>
 </div>

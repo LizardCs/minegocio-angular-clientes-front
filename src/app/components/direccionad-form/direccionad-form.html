@@ -1,24 +1,48 @@
 <div *ngIf="cliente()">
   <div class="form-general">
     <h2>Agregar Dirección Adicional para: {{ cliente()?.names }}</h2>
-    <form (ngSubmit)="guardar()">
-      <div>
-        <label>Provincia:</label>
-        <input [(ngModel)]="provincia" name="provincia" required />
+
+    <form (ngSubmit)="guardar()" #formDirRef="ngForm">
+
+      <div class="field">
+        <label for="provincia">Provincia:</label>
+        <input pInputText id="provincia" name="provincia" type="text" [(ngModel)]="provincia" required
+          #provinciaRef="ngModel"
+          [ngClass]="{'p-invalid': provinciaRef.invalid && (provinciaRef.dirty || provinciaRef.touched)}" />
+        <small *ngIf="provinciaRef.invalid && (provinciaRef.dirty || provinciaRef.touched)" class="p-error">
+          La provincia es obligatoria.
+        </small>
       </div>
-      <div>
-        <label>Ciudad:</label>
-        <input [(ngModel)]="ciudad" name="ciudad" required />
+
+      <div class="field">
+        <label for="ciudad">Ciudad:</label>
+        <input pInputText id="ciudad" name="ciudad" type="text" [(ngModel)]="ciudad" required #ciudadRef="ngModel"
+          [ngClass]="{'p-invalid': ciudadRef.invalid && (ciudadRef.dirty || ciudadRef.touched)}" />
+        <small *ngIf="ciudadRef.invalid && (ciudadRef.dirty || ciudadRef.touched)" class="p-error">
+          La ciudad es obligatoria.
+        </small>
       </div>
-      <div>
-        <label>Dirección:</label>
-        <input [(ngModel)]="direccion" name="direccion" required />
+
+      <div class="field">
+        <label for="direccion">Dirección:</label>
+        <input pInputText id="direccion" name="direccion" type="text" [(ngModel)]="direccion" required
+          #direccionRef="ngModel"
+          [ngClass]="{'p-invalid': direccionRef.invalid && (direccionRef.dirty || direccionRef.touched)}" />
+        <small *ngIf="direccionRef.invalid && (direccionRef.dirty || direccionRef.touched)" class="p-error">
+          La dirección es obligatoria.
+        </small>
       </div>
+
       <div class="botones">
-        <button type="submit">Guardar dirección</button>
-        <button type="button" (click)="resetear()">Limpiar</button>
-        <button type="button" (click)="cancelardirad()">Cancelar</button>
+        <button pButton type="submit" label="Guardar Dirección" severity="info" [raised]="true"
+          [disabled]="formDirRef.invalid">
+        </button>
+        <button pButton type="button" label="Limpiar" class="p-button-secondary" (click)="resetear()">
+        </button>
+        <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="cancelardirad()">
+        </button>
       </div>
+
     </form>
   </div>
 </div>
