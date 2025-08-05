@@ -1,8 +1,8 @@
 <div class="lista-general">
-  <h2>Clientes Registrados</h2>
+  <h2>GESTION DE CLIENTES</h2>
 
-  <button pButton severity="info" [raised]="true" *ngIf="!mostrarFormularioCliente()" (click)="nuevoCliente()">
-    Agregar nuevo cliente
+  <button pButton severity="info" [raised]="true" *ngIf="!mostrarFormularioCliente()" (click)="nuevoCliente()" >
+    Agregar nuevo cliente <i class="pi pi-plus" style="margin-left: .5rem"></i>
   </button>
 
   <!-- Mostrar formulario cuando activo -->
@@ -13,11 +13,11 @@
   <div>
     <div class="buscador">
       <p-floatLabel variant="on">
-        <input id="buscar" pInputText [(ngModel)]="filtro" type="text" />
-        <label for="buscar">Buscar por cédula o nombre</label>
+        <input id="buscar" pInputText [(ngModel)]="filtro" type="text"/>
+        <label for="buscar">Buscar por DNI o NOMBRE</label>
       </p-floatLabel>
-      <button pButton [rounded]="true" severity="primary" label="Buscar" (click)="buscar()"></button>
-      <button pButton [rounded]="true" severity="secondary" label="Limpiar" (click)="limpiar()"></button>
+      <button pButton [rounded]="true" severity="secondary" label="Buscar" (click)="buscar()" icon="pi pi-search" ></button>
+      <button pButton [rounded]="true" severity="secondary" label="Limpiar" (click)="limpiar()" icon="pi pi-times"></button>
     </div>
 
     <p-table [value]="clientes" showGridlines [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
