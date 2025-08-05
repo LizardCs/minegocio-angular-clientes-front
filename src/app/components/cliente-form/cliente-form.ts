@@ -3,15 +3,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Cliente, Clienteservice } from '../../services/clienteservice';
 import { clienteSeleccionado } from '../../shared/cliente-compartido';
+import { PRIMENG_IMPORTS } from '../../primeng.imports';
+
 
 @Component({
   selector: 'app-cliente-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ...PRIMENG_IMPORTS],
   templateUrl: './cliente-form.html',
   styleUrl: './cliente-form.scss'
 })
 export class ClienteForm {
+
+  tipoIdentificaciones = [
+    { name: 'RUC', code: 'RUC' },
+    { name: 'DNI', code: 'DNI' },
+    { name: 'Pasaporte', code: 'Pasaporte' }
+  ];
+
   cancelar() {
     location.reload();
   }

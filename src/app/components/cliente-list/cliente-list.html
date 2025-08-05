@@ -1,26 +1,30 @@
 <div class="lista-general">
   <h2>Clientes Registrados</h2>
 
-  <button *ngIf="!mostrarFormularioCliente()" (click)="nuevoCliente()">Agregar nuevo cliente</button>
+  <button pButton severity="info" [raised]="true" *ngIf="!mostrarFormularioCliente()" (click)="nuevoCliente()">
+    Agregar nuevo cliente
+  </button>
 
   <!-- Mostrar formulario cuando activo -->
-  <app-cliente-form 
-    *ngIf="mostrarFormularioCliente()" 
-    (cancelar)="cancelarFormulario()" 
+  <app-cliente-form *ngIf="mostrarFormularioCliente()" (cancelar)="cancelarFormulario()"
     (guardado)="cancelarFormulario()">
   </app-cliente-form>
 
   <div>
     <div class="buscador">
-      <input [(ngModel)]="filtro" type="text" placeholder="Buscar por cédula o nombre" />
-      <button class="" (click)="buscar()">Buscar</button>
-      <button (click)="limpiar()">Limpiar</button>
+      <p-floatLabel variant="on">
+        <input id="buscar" pInputText [(ngModel)]="filtro" type="text" />
+        <label for="buscar">Buscar por cédula o nombre</label>
+      </p-floatLabel>
+      <button pButton [rounded]="true" severity="primary" label="Buscar" (click)="buscar()"></button>
+      <button pButton [rounded]="true" severity="secondary" label="Limpiar" (click)="limpiar()"></button>
     </div>
 
-    <table>
-      <thead>
+    <p-table [value]="clientes" showGridlines [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
+      [rowsPerPageOptions]="[5,10,20]" [responsiveLayout]="'scroll'">
+      <ng-template pTemplate="header">
         <tr>
-          <th>N</th>
+          <th style="width: 3rem;">N</th>
           <th>Tipo</th>
           <th>ID o RUC</th>
           <th>Nombre</th>
@@ -28,11 +32,12 @@
           <th>Celular</th>
           <th>Ciudad</th>
           <th>Dirección</th>
-          <th>Acciones</th>
+          <th style="width: 12rem;">Acciones</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cliente of clientes; let i = index">
+      </ng-template>
+
+      <ng-template pTemplate="body" let-cliente let-i="rowIndex">
+        <tr>
           <td>{{ i + 1 }}</td>
           <td>{{ cliente.identificationType }}</td>
           <td>{{ cliente.identificationNumber }}</td>
@@ -42,12 +47,28 @@
           <td>{{ cliente.mainCity }}</td>
           <td>{{ cliente.mainAddress }}</td>
           <td>
-            <button (click)="editarCliente(cliente)">Editar</button>
-            <button (click)="eliminarCliente(cliente.id)">Eliminar</button>
-            <button (click)="verDireccionesAdicionales(cliente)">DIR ADICIONALES</button>
+            <div class="acciones-botones">
+              <div class="fila-superior">
+                <button pButton type="button" label="Editar" icon="pi pi-pencil" class="p-button-sm p-button-info"
+                  (click)="editarCliente(cliente)"></button>
+                <button pButton type="button" label="Eliminar" icon="pi pi-trash" class="p-button-sm p-button-danger"
+                  (click)="eliminarCliente(cliente.id)"></button>
+              </div>
+              <div class="fila-inferior">
+                <button pButton type="button" label="Dir. Adicionales" icon="pi pi-map-marker"
+                  class="p-button-sm p-button-secondary" (click)="verDireccionesAdicionales(cliente)"></button>
+              </div>
+            </div>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9" class="text-center">No se encontraron clientes.</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
   </div>
 </div>

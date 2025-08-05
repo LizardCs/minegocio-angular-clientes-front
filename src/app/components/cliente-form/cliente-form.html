@@ -1,57 +1,69 @@
 <div class="form-general">
-  <form (ngSubmit)="guardar()">
+  <form (ngSubmit)="guardar()" #formRef="ngForm">
 
-    <div>
-      <label>Tipo Identificación </label>
-      <select [(ngModel)]="form.identificationType" name="identificationType" required>
-        <option value="" disabled>Seleccione: </option>
-        <option value="RUC">RUC</option>
-        <option value="Cédula">DNI</option>
-        <option value="Pasaporte">Pasaporte</option>
-      </select>
+    <div class="field">
+      <label for="identificationType">Tipo Identificación:</label>
+      <p-select [options]="tipoIdentificaciones" [(ngModel)]="form.identificationType" optionLabel="name"
+        optionValue="code" placeholder="Seleccione" name="identificationType" required [showClear]="true"
+        class="w-full md:w-56" #identificationType="ngModel"
+        [ngClass]="{'p-invalid': identificationType.invalid && (identificationType.dirty || identificationType.touched)}">
+      </p-select>
+      <small *ngIf="identificationType.invalid && (identificationType.dirty || identificationType.touched)"
+        class="p-error">Tipo de identificación es obligatorio.</small>
     </div>
 
-    <div>
-      <label>Número Identificación: </label>
-      <input [(ngModel)]="form.identificationNumber" name="identificationNumber" type="text" required />
+    <div class="field">
+      <label for="identificationNumber">Número Identificación:</label>
+      <input pInputText id="identificationNumber" type="text" [(ngModel)]="form.identificationNumber"
+        name="identificationNumber" required #identificationNumber="ngModel"
+        [ngClass]="{'p-invalid': identificationNumber.invalid && (identificationNumber.dirty || identificationNumber.touched)}" />
+      <small *ngIf="identificationNumber.invalid && (identificationNumber.dirty || identificationNumber.touched)"
+        class="p-error">Número de identificación es obligatorio.</small>
     </div>
 
-    <div>
-      <label>Nombres completos: </label>
-      <input [(ngModel)]="form.names" name="names" type="text" required />
+    <div class="field">
+      <label for="names">Nombres completos:</label>
+      <input pInputText id="names" type="text" [(ngModel)]="form.names" name="names" required #names="ngModel"
+        [ngClass]="{'p-invalid': names.invalid && (names.dirty || names.touched)}" />
+      <small *ngIf="names.invalid && (names.dirty || names.touched)" class="p-error">Los nombres son
+        obligatorios.</small>
     </div>
 
-    <div>
-      <label>Email: </label>
-      <input [(ngModel)]="form.email" name="email" type="email" />
+    <div class="field">
+      <label for="email">Email:</label>
+      <input pInputText id="email" type="email" [(ngModel)]="form.email" name="email" email #email="ngModel"
+        [ngClass]="{'p-invalid': email.invalid && (email.dirty || email.touched)}" />
+      <small *ngIf="email.invalid && (email.dirty || email.touched)" class="p-error">Ingresa un email válido.</small>
     </div>
 
-    <div>
-      <label>Celular: </label>
-      <input [(ngModel)]="form.cellphone" name="cellphone" type="tel" />
+    <div class="field">
+      <label for="cellphone">Celular:</label>
+      <input pInputText id="cellphone" type="tel" [(ngModel)]="form.cellphone" name="cellphone" />
     </div>
 
     <h3>Dirección Principal</h3>
-    <div>
-      <label>Provincia: </label>
-      <input [(ngModel)]="form.mainProvince" name="mainProvince" type="text" />
+
+    <div class="field">
+      <label for="mainProvince">Provincia:</label>
+      <input pInputText id="mainProvince" type="text" [(ngModel)]="form.mainProvince" name="mainProvince" />
     </div>
 
-    <div>
-      <label>Ciudad: </label>
-      <input [(ngModel)]="form.mainCity" name="mainCity" type="text" />
+    <div class="field">
+      <label for="mainCity">Ciudad:</label>
+      <input pInputText id="mainCity" type="text" [(ngModel)]="form.mainCity" name="mainCity" />
     </div>
 
-    <div>
-      <label>Dirección: </label>
-      <input [(ngModel)]="form.mainAddress" name="mainAddress" type="text" />
+    <div class="field">
+      <label for="mainAddress">Dirección:</label>
+      <input pInputText id="mainAddress" type="text" [(ngModel)]="form.mainAddress" name="mainAddress" />
     </div>
 
     <div class="botones">
-      <button type="submit">Guardar</button>
-      <button type="button" (click)="resetearFormulario()">Limpiar Formulario</button>
-      <button type="button" (click)="cancelar()">Cancelar</button>
+      <button pButton label="Info" type="submit" severity="info" [raised]="true" label="Guardar" [disabled]="formRef.invalid"></button>
+      <button pButton type="button" label="Limpiar Formulario" class="p-button-secondary"
+        (click)="resetearFormulario()"></button>
+      <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="cancelar()"></button>
     </div>
-    
+
   </form>
 </div>

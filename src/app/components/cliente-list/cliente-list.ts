@@ -5,6 +5,7 @@ import { Clienteservice, Cliente } from '../../services/clienteservice';
 import { HttpClientModule } from '@angular/common/http';
 import { clienteParaDirecciones, clienteSeleccionado } from '../../shared/cliente-compartido';
 import { ClienteForm } from "../cliente-form/cliente-form";
+import { PRIMENG_IMPORTS } from '../../primeng.imports';
 
 @Component({
   selector: 'app-cliente-list',
@@ -13,7 +14,8 @@ import { ClienteForm } from "../cliente-form/cliente-form";
     CommonModule,
     FormsModule,
     HttpClientModule,
-    ClienteForm
+    ClienteForm,
+    ...PRIMENG_IMPORTS
 ],
 
   templateUrl: './cliente-list.html',
